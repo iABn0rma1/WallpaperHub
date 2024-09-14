@@ -1,0 +1,16 @@
+/* CollectionPage.css */
+.collection-page {
+    padding: 20px;
+}
+
+.collection-wallpapers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.wallpaper-image {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+}

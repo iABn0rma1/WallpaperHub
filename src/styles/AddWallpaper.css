@@ -1,0 +1,21 @@
+/* styles/AddWallpaper.css */
+.add-wallpaper {
+    margin: 20px;
+}
+
+.add-wallpaper form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    margin: 5px;
+    padding: 10px;
+    width: 300px;
+}
+
+button {
+    padding: 10px;
+    cursor: pointer;
+}

@@ -1,0 +1,12 @@
+/* styles/WallpaperCollection.css */
+.wallpaper-collection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.wallpaper {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
