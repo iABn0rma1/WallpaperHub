@@ -1,16 +1,46 @@
-/* CollectionPage.css */
 .collection-page {
     padding: 20px;
+    text-align: center;
 }
 
-.collection-wallpapers {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+.wallpapers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
 }
 
-.wallpaper-image {
-    width: 200px;
-    height: auto;
+.wallpaper-card {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.wallpaper-card:hover {
+    transform: scale(1.05);
+}
+
+.collection-wallpaper {
+    width: 100%;
+    height: 200px;
     object-fit: cover;
+    cursor: pointer;
+}
+
+.download-btn {
+    width: 100%;
+    margin: 0;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 0 0 5px 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #45a049;
 }

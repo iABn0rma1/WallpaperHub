@@ -1,47 +1,54 @@
-// HomePage.js
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/HomePage.css';
 
 const HomePage = ({ wallpapers }) => {
-    // Function to group wallpapers by tags
-    const groupByTag = (wallpapers) => {
-        const collections = {};
+    const navigate = useNavigate();
 
-        wallpapers.forEach(({ url, tags }) => {
-            tags.forEach(tag => {
-                if (!collections[tag]) {
-                    collections[tag] = { urls: [], coverImage: url }; // Use the first image as the cover image
-                }
-                collections[tag].urls.push(url);
-            });
+    // Create a map of collections based on tags
+    const collections = wallpapers.reduce((acc, wallpaper) => {
+        wallpaper.tags.forEach((tag) => {
+            if (!acc[tag]) {
+                acc[tag] = { tag, wallpapers: [wallpaper] };
+            } else {
+                acc[tag].wallpapers.push(wallpaper);
+            }
         });
+        return acc;
+    }, {});
 
-        return collections;
+    const handleCollectionClick = (collectionName) => {
+        navigate(`/collection/${collectionName}`);
     };
-
-    const collections = groupByTag(wallpapers);
 
     return (
         <div className="home-page">
             <h1>Wallpaper Collections</h1>
-            {Object.keys(collections).length > 0 ? (
-                Object.keys(collections).map(tag => (
-                    <div key={tag} className="collection">
-                        <Link to={`/collection/${tag}`}>
-                            <div className="collection-cover">
-                                <img src={collections[tag].coverImage} alt={tag} className="cover-image" />
-                                <div className="cover-overlay">
-                                    <span>{collections[tag].urls.length} Wallpapers</span>
+            <div className="collections-grid">
+                {Object.keys(collections).map((collectionName) => {
+                    const collection = collections[collectionName];
+                    const coverImage = collection.wallpapers[0]?.url || '';
+                    const totalWallpapers = collection.wallpapers.length;
+
+                    return (
+                        <div
+                            key={collectionName}
+                            className="collection-card"
+                            onClick={() => handleCollectionClick(collectionName)}
+                        >
+                            <div className="image-container">
+                                <img src={coverImage} alt={collectionName} className="cover-image" loading="lazy" />
+                                <div className="overlay">
+                                    <div className="overlay-text">
+                                        <p>{collectionName}</p>
+                                        <p>{totalWallpapers} wallpapers</p>
+                                    </div>
                                 </div>
                             </div>
-                            <h2>{tag}</h2>
-                        </Link>
-                    </div>
-                ))
-            ) : (
-                <p>No collections available. Add some wallpapers to see them here.</p>
-            )}
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 };

@@ -1,21 +1,58 @@
-/* styles/AddWallpaper.css */
-.add-wallpaper {
-    margin: 20px;
+.add-wallpaper-page {
+    padding: 20px;
+    text-align: center;
 }
 
-.add-wallpaper form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.add-wallpaper-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
 }
 
-input {
-    margin: 5px;
+.add-wallpaper-form label {
+    display: block;
+    font-weight: bold;
+    text-align: justify;
+    padding-left: 5px;
+    margin-bottom: 8px;
+}
+
+.add-wallpaper-form input {
+    width: calc(100% - 20px);
     padding: 10px;
-    width: 300px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-button {
-    padding: 10px;
+.submit-button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.submit-button:hover:not(:disabled) {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+.success-message {
+    color: green;
+    font-size: 14px;
 }

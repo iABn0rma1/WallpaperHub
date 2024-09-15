@@ -1,10 +1,9 @@
-// App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import AddWallpaper from './components/AddWallpaper';
 import HomePage from './components/HomePage';
 import CollectionPage from './components/CollectionPage';
-import WallpaperPage from './components/WallpaperPage'; // New component
+import WallpaperPage from './components/WallpaperPage';
 import './styles/App.css';
 
 const App = () => {
@@ -24,12 +23,14 @@ const App = () => {
                     </ul>
                 </nav>
 
-                <Routes>
-                    <Route path="/" element={<HomePage wallpapers={wallpapers} />} />
-                    <Route path="/add-wallpaper" element={<AddWallpaper addWallpaper={addWallpaper} />} />
-                    <Route path="/collection/:collectionName" element={<CollectionPage wallpapers={wallpapers} />} />
-                    <Route path="/wallpaper/:url" element={<WallpaperPage wallpapers={wallpapers} />} /> {/* New route */}
-                </Routes>
+                <div className="app-container">
+                    <Routes>
+                        <Route path="/" element={<HomePage wallpapers={wallpapers} />} />
+                        <Route path="/add-wallpaper" element={<AddWallpaper addWallpaper={addWallpaper} />} />
+                        <Route path="/collection/:collectionName" element={<CollectionPage wallpapers={wallpapers} />} />
+                        <Route path="/wallpaper/:url" element={<WallpaperPage wallpapers={wallpapers} />} />
+                    </Routes>
+                </div>
             </div>
         </Router>
     );

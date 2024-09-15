@@ -1,14 +1,18 @@
-body {
-    background-color: black;
-}
-
-
 .App {
     text-align: center;
 }
 
+.app-container {
+    margin: 20px 5% 20px 5%;
+}
+
+body {
+    background-color: black;
+}
+
 h1 {
     color: #f0f0f0;
+    margin: 2% 0 7%;
 }
 
 nav {

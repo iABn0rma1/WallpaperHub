@@ -1,4 +1,3 @@
-// WallpaperCollection.js
 import React from 'react';
 import '../styles/WallpaperCollection.css';
 

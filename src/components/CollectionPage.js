@@ -1,4 +1,3 @@
-// CollectionPage.js
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/CollectionPage.css';
@@ -7,30 +6,50 @@ const CollectionPage = ({ wallpapers }) => {
     const { collectionName } = useParams();
     const navigate = useNavigate();
 
-    // Filter wallpapers by the collection (tag)
-    const filteredWallpapers = wallpapers.filter(({ tags }) => tags.includes(collectionName));
+    // Find wallpapers that belong to this collection
+    const collectionWallpapers = wallpapers.filter((wallpaper) =>
+        wallpaper.tags.includes(collectionName)
+    );
 
-    const handleImageClick = (url) => {
+    // Function to handle the download
+    const handleDownload = async (imageUrl) => {
+        const response = await fetch(imageUrl);
+        const blob = await response.blob();
+        const urlBlob = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = urlBlob;
+        a.download = `wallpaper-${Date.now()}.jpg`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(urlBlob);
+    };
+
+    const handleWallpaperClick = (url) => {
         navigate(`/wallpaper/${encodeURIComponent(url)}`);
     };
 
     return (
         <div className="collection-page">
             <h1>{collectionName} Collection</h1>
-            <div className="collection-wallpapers">
-                {filteredWallpapers.length > 0 ? (
-                    filteredWallpapers.map(({ url }, index) => (
+            <div className="wallpapers-grid">
+                {collectionWallpapers.map((wallpaper) => (
+                    <div key={wallpaper.url} className="wallpaper-card">
                         <img
-                            key={index}
-                            src={url}
-                            alt={`Wallpaper ${index}`}
-                            className="wallpaper-image"
-                            onClick={() => handleImageClick(url)}
+                            src={wallpaper.url}
+                            alt={collectionName}
+                            className="collection-wallpaper"
+                            loading="lazy"
+                            onClick={() => handleWallpaperClick(wallpaper.url)}
                         />
-                    ))
-                ) : (
-                    <p>No wallpapers in this collection.</p>
-                )}
+                        <button
+                            className="download-btn"
+                            onClick={() => handleDownload(wallpaper.url)}
+                        >
+                            Download
+                        </button>
+                    </div>
+                ))}
             </div>
         </div>
     );

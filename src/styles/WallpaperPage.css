@@ -1,27 +1,30 @@
-/* WallpaperPage.css */
 .wallpaper-page {
     padding: 20px;
     text-align: center;
 }
 
+.wallpaper-container {
+    display: inline-block;
+}
+
 .full-wallpaper-image {
     max-width: 100%;
     height: auto;
+    display: block;
     border: 1px solid #ddd;
-    margin-bottom: 20px;
 }
 
 .download-button {
+    margin-top: 20px;
     padding: 10px 20px;
-    font-size: 16px;
+    background-color: #4caf50;
     color: white;
-    background-color: #007bff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    text-decoration: none;
+    transition: background-color 0.3s;
 }
 
 .download-button:hover {
-    background-color: #0056b3;
+    background-color: #45a049;
 }
