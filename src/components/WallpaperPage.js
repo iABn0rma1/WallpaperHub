@@ -73,6 +73,7 @@ const WallpaperPage = () => {
 		<div className="wallpaper-page">
 			{wallpaper ? (
 				<div className="wallpaper-container">
+					<h1>{wallpaper.name}</h1>
 					{/* Skeleton loading */}
 					{imageLoading && (
 						<Skeleton
