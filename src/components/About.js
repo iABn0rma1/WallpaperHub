@@ -136,12 +136,11 @@ const AboutPage = () => {
 					className="profile-image"
 				/>
 				<div className="profile-details">
-					<h1>Hello,</h1>
+					<h1>Welcome to WallpaperHub!</h1>
 					<p>
-						Welcome to WallpaperHub! I'm a passionate developer with
-						experience in machine learning, web development, and more creative
-						projects. Below, you'll find more about this platform
-						and some of my other projects.
+						I'm a passionate developer with experience in machine learning, web development, 
+                        and more creative projects. Below, you'll find more about this platform 
+                        and some of my other projects.
 					</p>
 				</div>
 			</div>
