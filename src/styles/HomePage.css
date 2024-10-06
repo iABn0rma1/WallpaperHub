@@ -1,13 +1,12 @@
 .home-page {
-    padding: 20px 6.9%;
-    /* margin: 20px 10% 20px 10%; */
+    padding: 20px 6.9%; /* Initial padding */
     text-align: center;
 }
 
 .collections-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    gap: 20px; /* Gap between grid items */
 }
 
 .collection-card {
@@ -25,7 +24,7 @@
 
 .image-container {
     position: relative;
-    height: 250px;
+    height: 250px; /* Fixed height for images */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,10 +54,65 @@
 }
 
 .overlay-text {
-    font-size: 18px;
+    font-size: 18px; /* Default font size for overlay text */
     font-weight: bold;
 }
 
 .collection-card:hover .overlay {
     opacity: 1;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+    .home-page {
+        padding: 20px 5%; /* Reduce padding for smaller screens */
+    }
+
+    .collections-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust minimum column size */
+    }
+
+    .image-container {
+        height: 200px; /* Adjust height for smaller screens */
+    }
+
+    .overlay-text {
+        font-size: 16px; /* Slightly smaller font size */
+    }
+}
+
+@media (max-width: 768px) {
+    .home-page {
+        padding: 20px 4%; /* Further reduce padding */
+    }
+
+    .collections-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Further adjust minimum column size */
+    }
+
+    .image-container {
+        height: 180px; /* Further reduce height */
+    }
+
+    .overlay-text {
+        font-size: 14px; /* Further reduce font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .home-page {
+        padding: 20px 2%; /* Minimal padding for very small screens */
+    }
+
+    .collections-grid {
+        grid-template-columns: 1fr; /* Stack cards in a single column */
+    }
+
+    .image-container {
+        height: 150px; /* Minimal height for images */
+    }
+
+    .overlay-text {
+        font-size: 12px; /* Minimal font size */
+    }
 }

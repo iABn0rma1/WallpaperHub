@@ -47,22 +47,6 @@ li a:hover {
     border-radius: 4px;
 }
 
-.search-input {
-    width: 100%;
-    max-width: 400px;
-    padding: 0.5rem;
-    margin: 1rem auto;
-    border: 1px solid #555;
-    border-radius: 4px;
-    font-size: 1rem;
-    color: #f0f0f0;
-    background-color: #222;
-}
-
-.search-input::placeholder {
-    color: #888;
-}
-
 @media (max-width: 768px) {
     ul {
         flex-direction: column;
@@ -81,5 +65,11 @@ li a:hover {
         padding: 0.8rem;
         display: block;
         width: 100%;
+    }
+}
+
+@media (max-width: 320px) {
+    body {
+        word-break: break-all;
     }
 }

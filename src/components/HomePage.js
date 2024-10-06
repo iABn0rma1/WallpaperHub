@@ -7,13 +7,12 @@ const HomePage = () => {
 	const [wallpapers, setWallpapers] = useState([]);
 	const navigate = useNavigate();
 
-	// Fetch wallpapers from the backend
 	const fetchWallpapers = async () => {
 		try {
 			const response = await axios.get(
 				"https://wallpaperapi-3zy0.onrender.com/api/wallpapers"
 			);
-			setWallpapers(response.data); // Set wallpapers from the response
+			setWallpapers(response.data);
 		} catch (error) {
 			console.error("Error fetching wallpapers:", error);
 		}

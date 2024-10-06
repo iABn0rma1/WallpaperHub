@@ -13,15 +13,18 @@ const AddWallpaper = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const tagArray = tags.split(",").map((tag) => tag.trim());
+
+		// Convert tags to lowercase, replace spaces with hyphens, and split into an array
+		const tagArray = tags
+			.split(",")
+			.map((tag) => tag.trim().toLowerCase().replace(/\s+/g, "-")); // Replace spaces with hyphens
 
 		try {
-			// Send POST request to add wallpaper
 			await axios.post(
 				"https://wallpaperapi-3zy0.onrender.com/api/wallpapers",
 				{
 					imageUrl: url,
-					name: name || undefined, // Optionally send name if provided
+					name: name || undefined,
 					tags: tagArray,
 				}
 			);
@@ -49,40 +52,46 @@ const AddWallpaper = () => {
 				onSubmit={handleSubmit}
 				className="add-wallpaper-form"
 			>
-				<label htmlFor="url">Wallpaper URL:</label>
+				<label htmlFor="url">* Wallpaper URL:</label>
 				<input
 					type="text"
 					id="url"
 					value={url}
 					onChange={(e) => setUrl(e.target.value)}
-					placeholder="Enter wallpaper URL"
+					placeholder="https://i-abnormal.netlify.app/images/icon.webp"
 				/>
 
-				<label htmlFor="name">Optional Name:</label>
+				<label htmlFor="name">Name (Optional):</label>
 				<input
 					type="text"
 					id="name"
 					value={name}
 					onChange={(e) => setName(e.target.value)}
-					placeholder="Enter wallpaper name (optional)"
+					placeholder="Wallpaper Name"
 				/>
 
-				<label htmlFor="tags">Tags (comma-separated):</label>
+				<label htmlFor="tags">* Tags (comma-separated):</label>
 				<input
 					type="text"
 					id="tags"
 					value={tags}
 					onChange={(e) => setTags(e.target.value)}
-					placeholder="Enter tags, e.g., nature, landscape"
+					placeholder="nature, landscape, animal, video-game"
 				/>
 
-				<button type="submit" disabled={isSubmitDisabled} className="submit-button">
+				<button
+					type="submit"
+					disabled={isSubmitDisabled}
+					className="submit-button"
+				>
 					Add Wallpaper
 				</button>
 
 				{/* Display success or error message */}
 				{message && (
-					<div className={error ? "error-message" : "success-message"}>
+					<div
+						className={error ? "error-message" : "success-message"}
+					>
 						{message}
 					</div>
 				)}
