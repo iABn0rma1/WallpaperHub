@@ -1,56 +1,88 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import '../styles/CollectionPage.css';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import "../styles/CollectionPage.css";
 
-const CollectionPage = ({ wallpapers }) => {
+const CollectionPage = () => {
     const { collectionName } = useParams();
+    const [collectionWallpapers, setCollectionWallpapers] = useState([]);
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
 
-    // Find wallpapers that belong to this collection
-    const collectionWallpapers = wallpapers.filter((wallpaper) =>
-        wallpaper.tags.includes(collectionName)
-    );
+    const fetchWallpapers = async (name) => {
+        try {
+            const response = await fetch("https://wallpaperapi-3zy0.onrender.com/api/wallpapers");
+            if (!response.ok) {
+                throw new Error("Failed to fetch wallpapers");
+            }
+            const allWallpapers = await response.json();
+            const filteredWallpapers = allWallpapers.filter((wallpaper) =>
+                wallpaper.tags.includes(name)
+            );
+            setCollectionWallpapers(filteredWallpapers);
+        } catch (error) {
+            console.error("Error fetching wallpapers:", error);
+            setError("No wallpapers found for this collection.");
+        }
+    };
 
-    // Function to handle the download
     const handleDownload = async (imageUrl) => {
-        const response = await fetch(imageUrl);
-        const blob = await response.blob();
-        const urlBlob = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = urlBlob;
-        a.download = `wallpaper-${Date.now()}.jpg`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(urlBlob);
+        try {
+            const response = await fetch(imageUrl);
+            if (!response.ok) {
+                throw new Error("Failed to download image.");
+            }
+            const blob = await response.blob();
+            const urlBlob = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = urlBlob;
+            a.download = `wallpaper-${Date.now()}.jpg`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(urlBlob);
+        } catch (error) {
+            console.error("Error downloading image:", error);
+        }
     };
 
-    const handleWallpaperClick = (url) => {
-        navigate(`/wallpaper/${encodeURIComponent(url)}`);
+    const handleWallpaperClick = (id) => {
+        navigate(`/wallpaper/${id}`);
     };
+
+    useEffect(() => {
+        fetchWallpapers(collectionName);
+    }, [collectionName]);
 
     return (
         <div className="collection-page">
             <h1>{collectionName} Collection</h1>
-            <div className="wallpapers-grid">
-                {collectionWallpapers.map((wallpaper) => (
-                    <div key={wallpaper.url} className="wallpaper-card">
-                        <img
-                            src={wallpaper.url}
-                            alt={collectionName}
-                            className="collection-wallpaper"
-                            loading="lazy"
-                            onClick={() => handleWallpaperClick(wallpaper.url)}
-                        />
-                        <button
-                            className="download-btn"
-                            onClick={() => handleDownload(wallpaper.url)}
-                        >
-                            Download
-                        </button>
-                    </div>
-                ))}
-            </div>
+            {error ? (
+                <p>{error}</p>
+            ) : (
+                <div className="wallpapers-grid">
+                    {collectionWallpapers.length > 0 ? (
+                        collectionWallpapers.map((wallpaper) => (
+                            <div key={wallpaper._id} className="wallpaper-card">
+                                <img
+                                    src={wallpaper.imageUrl}
+                                    alt={collectionName}
+                                    className="collection-wallpaper"
+                                    loading="lazy"
+                                    onClick={() => handleWallpaperClick(wallpaper._id)}
+                                />
+                                <button
+                                    className="download-btn"
+                                    onClick={() => handleDownload(wallpaper.imageUrl)}
+                                >
+                                    Download
+                                </button>
+                            </div>
+                        ))
+                    ) : (
+                        <p>No wallpapers found for this collection.</p>
+                    )}
+                </div>
+            )}
         </div>
     );
 };

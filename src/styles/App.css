@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: black;
+    background-color: #0a0e12;
 }
 
 h1 {
@@ -45,6 +45,22 @@ li a {
 li a:hover {
     background-color: #555;
     border-radius: 4px;
+}
+
+.search-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.5rem;
+    margin: 1rem auto;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #f0f0f0;
+    background-color: #222;
+}
+
+.search-input::placeholder {
+    color: #888;
 }
 
 @media (max-width: 768px) {

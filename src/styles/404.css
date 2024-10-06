@@ -1,0 +1,107 @@
+.not-found-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 100vh;
+    overflow: hidden !important;
+    color: #f0f0f0;
+    background-color: black;
+    padding: 6.9% 1rem 0 1rem;
+    box-sizing: border-box;
+}
+
+.not-found-page h1 {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+    text-align: center;
+    word-wrap: break-word;
+    line-height: 1.2;
+}
+
+p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.home-link {
+    background-color: #555;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.home-link:hover {
+    background-color: #777;
+}
+
+.random-image {
+    max-width: 100%;
+    max-height: 50vh;
+    /* Scale image to a maximum of 50% of the viewport height */
+    height: auto;
+    margin-bottom: 1rem;
+    object-fit: contain;
+    /* Maintain aspect ratio */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .not-found-page {
+        padding-top: 20%;
+        /* Increase top padding on smaller screens */
+    }
+
+    .not-found-page h1 {
+        font-size: 2rem;
+        /* Smaller heading for small screens */
+    }
+
+    p {
+        font-size: 1rem;
+        /* Adjust font size for readability */
+    }
+
+    .home-link {
+        padding: 0.5rem 0.8rem;
+        /* Slightly smaller button padding */
+        font-size: 0.9rem;
+    }
+
+    .random-image {
+        max-height: 40vh;
+        /* Reduce image height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .not-found-page {
+        padding-top: 25%;
+        /* Even more top padding for very small screens */
+    }
+
+    .not-found-page h1 {
+        font-size: 1.8rem;
+        /* Smaller heading for extra small screens */
+    }
+
+    p {
+        font-size: 0.9rem;
+        /* Adjust paragraph text for small screens */
+    }
+
+    .home-link {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.85rem;
+    }
+
+    .random-image {
+        max-height: 35vh;
+        /* Further reduce image height for smaller screens */
+    }
+}

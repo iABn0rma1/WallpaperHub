@@ -1,14 +1,17 @@
 .wallpaper-page {
-    padding: 20px;
+    padding: 20px 6.9%;
     text-align: center;
 }
 
 .wallpaper-container {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .full-wallpaper-image {
-    max-width: 100%;
+    max-width: 69%;
     height: auto;
     display: block;
     border: 1px solid #ddd;

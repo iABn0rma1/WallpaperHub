@@ -1,56 +1,81 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/HomePage.css';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import "../styles/HomePage.css";
 
-const HomePage = ({ wallpapers }) => {
-    const navigate = useNavigate();
+const HomePage = () => {
+	const [wallpapers, setWallpapers] = useState([]);
+	const navigate = useNavigate();
 
-    // Create a map of collections based on tags
-    const collections = wallpapers.reduce((acc, wallpaper) => {
-        wallpaper.tags.forEach((tag) => {
-            if (!acc[tag]) {
-                acc[tag] = { tag, wallpapers: [wallpaper] };
-            } else {
-                acc[tag].wallpapers.push(wallpaper);
-            }
-        });
-        return acc;
-    }, {});
+	// Fetch wallpapers from the backend
+	const fetchWallpapers = async () => {
+		try {
+			const response = await axios.get(
+				"https://wallpaperapi-3zy0.onrender.com/api/wallpapers"
+			);
+			setWallpapers(response.data); // Set wallpapers from the response
+		} catch (error) {
+			console.error("Error fetching wallpapers:", error);
+		}
+	};
 
-    const handleCollectionClick = (collectionName) => {
-        navigate(`/collection/${collectionName}`);
-    };
+	useEffect(() => {
+		fetchWallpapers(); // Call fetchWallpapers on component mount
+	}, []);
 
-    return (
-        <div className="home-page">
-            <h1>Wallpaper Collections</h1>
-            <div className="collections-grid">
-                {Object.keys(collections).map((collectionName) => {
-                    const collection = collections[collectionName];
-                    const coverImage = collection.wallpapers[0]?.url || '';
-                    const totalWallpapers = collection.wallpapers.length;
+	// Create a map of collections based on tags
+	const collections = wallpapers.reduce((acc, wallpaper) => {
+		wallpaper.tags.forEach((tag) => {
+			if (!acc[tag]) {
+				acc[tag] = { tag, wallpapers: [wallpaper] };
+			} else {
+				acc[tag].wallpapers.push(wallpaper);
+			}
+		});
+		return acc;
+	}, {});
 
-                    return (
-                        <div
-                            key={collectionName}
-                            className="collection-card"
-                            onClick={() => handleCollectionClick(collectionName)}
-                        >
-                            <div className="image-container">
-                                <img src={coverImage} alt={collectionName} className="cover-image" loading="lazy" />
-                                <div className="overlay">
-                                    <div className="overlay-text">
-                                        <p>{collectionName}</p>
-                                        <p>{totalWallpapers} wallpapers</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
-        </div>
-    );
+	const handleCollectionClick = (collectionName) => {
+		navigate(`/collection/${collectionName}`);
+	};
+
+	return (
+		<div className="home-page">
+			<h1>Wallpaper Collections</h1>
+			<div className="collections-grid">
+				{Object.keys(collections).map((collectionName) => {
+					const collection = collections[collectionName];
+					const coverImage = collection.wallpapers[0]?.imageUrl || ""; // Updated to imageUrl
+					const totalWallpapers = collection.wallpapers.length;
+
+					return (
+						<div
+							key={collectionName}
+							className="collection-card"
+							onClick={() =>
+								handleCollectionClick(collectionName)
+							}
+						>
+							<div className="image-container">
+								<img
+									src={coverImage}
+									alt={collectionName}
+									className="cover-image"
+									loading="lazy"
+								/>
+								<div className="overlay">
+									<div className="overlay-text">
+										<p>{collectionName}</p>
+										<p>{totalWallpapers} wallpapers</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					);
+				})}
+			</div>
+		</div>
+	);
 };
 
 export default HomePage;
