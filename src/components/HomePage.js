@@ -10,7 +10,7 @@ const HomePage = () => {
 	const fetchWallpapers = async () => {
 		try {
 			const response = await axios.get(
-				"https://wallpaperapi-3zy0.onrender.com/api/wallpapers"
+				"https://wallpaper-api-gamma.vercel.app/api/wallpapers"
 			);
 			setWallpapers(response.data);
 		} catch (error) {

@@ -10,7 +10,7 @@ const NotFoundPage = () => {
 		const fetchRandomImage = async () => {
 			try {
 				const response = await fetch(
-					"https://wallpaperapi-3zy0.onrender.com/api/404-images"
+					"https://wallpaper-api-gamma.vercel.app/api/404-images"
 				);
 				if (!response.ok) {
 					const errorText = await response.text();

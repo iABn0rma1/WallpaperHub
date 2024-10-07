@@ -10,7 +10,7 @@ const CollectionPage = () => {
 
     const fetchWallpapers = async (name) => {
         try {
-            const response = await fetch("https://wallpaperapi-3zy0.onrender.com/api/wallpapers");
+            const response = await fetch("https://wallpaper-api-gamma.vercel.app/api/wallpapers");
             if (!response.ok) {
                 throw new Error("Failed to fetch wallpapers");
             }

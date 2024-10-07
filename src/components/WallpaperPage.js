@@ -13,7 +13,7 @@ const WallpaperPage = () => {
 	const fetchWallpaper = async () => {
 		try {
 			const response = await fetch(
-				`https://wallpaperapi-3zy0.onrender.com/api/wallpapers/${id}`,
+				`https://wallpaper-api-gamma.vercel.app/api/wallpapers/${id}`,
 				{
 					method: "GET",
 					headers: {

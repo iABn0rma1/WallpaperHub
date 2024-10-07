@@ -21,7 +21,7 @@ const AddWallpaper = () => {
 
 		try {
 			await axios.post(
-				"https://wallpaperapi-3zy0.onrender.com/api/wallpapers",
+				"https://wallpaper-api-gamma.vercel.app/api/wallpapers",
 				{
 					imageUrl: url,
 					name: name || undefined,
