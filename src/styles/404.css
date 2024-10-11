@@ -6,7 +6,7 @@
     max-height: 100vh;
     overflow: hidden !important;
     color: #f0f0f0;
-    background-color: black;
+/*     background-color: black; */
     padding: 6.9% 1rem 0 1rem;
     box-sizing: border-box;
 }
@@ -45,6 +45,7 @@ p {
     max-height: 50vh;
     /* Scale image to a maximum of 50% of the viewport height */
     height: auto;
+    box-shadow: 1px 1px 50px 5px rgb(138,43,226, 0.3);
     margin-bottom: 1rem;
     object-fit: contain;
     /* Maintain aspect ratio */
