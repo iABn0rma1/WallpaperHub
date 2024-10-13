@@ -54,6 +54,10 @@
     border-radius: 10px;
 }
 
+.project-card a:hover {
+    text-decoration: none;
+}
+
 .project-card h3 {
     color: #ffd700;
     margin-top: 10px;
