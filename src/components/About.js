@@ -11,48 +11,68 @@ const AboutPage = () => {
 			title: "Aesthetic Intelligence",
 			imageUrl:
 				"https://cdn-cjhgk.nitrocdn.com/CXxGixRVyChwAxySbAyltuCiQXRKaWDN/assets/images/optimized/rev-e29aa1c/www.newbeauty.com/wp-content/uploads/2024/04/ai-good-bad-ugly-2-1024x614.jpg",
+			url: "https://aestheticintelligence.onrender.com".
 		},
 		{
-			title: "iAB.logs",
+			title: "inkSpire",
 			imageUrl:
 				"https://aeolidia.com/wp-content/uploads/2015/03/no-blog-body-615x410.jpg",
+			url: "https://iablogs.vercel.app",
 		},
 		{
 			title: "CV-Extractor",
 			imageUrl: "https://i-abnormal.netlify.app/images/cv.webp",
+			url: "https://cv-xray.onrender.com",
 		},
 		{
 			title: "The Pensieve",
 			imageUrl:
 				"https://raw.githubusercontent.com/iABn0rma1/The.Pensieve-Project/main/assets/img/pensieve.jpeg",
+			url: "https://the-pensieve.netlify.app",
 		},
 		{
 			title: "Epic Games Scraper",
 			imageUrl: "https://i-abnormal.netlify.app/images/steam.webp",
+			url: "https://epic-steam-deals.vercel.app/",
+		},
+		{
+			title: "Keywords and Summary Generator",
+			imageUrl: "https://img.freepik.com/free-photo/improvement-summary-personal-development-workflow_53876-132263.jpg?w=2000&t=st=1728773270~exp=1728773870~hmac=324e1e87f8c551b5845e5b8b37b3acd50ccd8845efdcbd1f7864c5ee03256998",
+			url: "https://tags-smrzr.onrender.com",
 		},
 		// Break point
 		{
 			title: "Aesthetic Intelligence",
 			imageUrl:
 				"https://cdn-cjhgk.nitrocdn.com/CXxGixRVyChwAxySbAyltuCiQXRKaWDN/assets/images/optimized/rev-e29aa1c/www.newbeauty.com/wp-content/uploads/2024/04/ai-good-bad-ugly-2-1024x614.jpg",
+			url: "https://aestheticintelligence.onrender.com".
 		},
 		{
-			title: "iAB.logs",
+			title: "inkSpire",
 			imageUrl:
 				"https://aeolidia.com/wp-content/uploads/2015/03/no-blog-body-615x410.jpg",
+			url: "https://iablogs.vercel.app",
 		},
 		{
 			title: "CV-Extractor",
 			imageUrl: "https://i-abnormal.netlify.app/images/cv.webp",
+			url: "https://cv-xray.onrender.com",
 		},
 		{
 			title: "The Pensieve",
 			imageUrl:
 				"https://raw.githubusercontent.com/iABn0rma1/The.Pensieve-Project/main/assets/img/pensieve.jpeg",
+			url: "https://the-pensieve.netlify.app",
 		},
 		{
 			title: "Epic Games Scraper",
 			imageUrl: "https://i-abnormal.netlify.app/images/steam.webp",
+			url: "https://epic-steam-deals.vercel.app/",
+		},
+		{
+			title: "Keywords and Summary Generator",
+			imageUrl: "https://img.freepik.com/free-photo/improvement-summary-personal-development-workflow_53876-132263.jpg?w=2000&t=st=1728773270~exp=1728773870~hmac=324e1e87f8c551b5845e5b8b37b3acd50ccd8845efdcbd1f7864c5ee03256998",
+			url: "https://tags-smrzr.onrender.com",
 		},
 	]);
 
@@ -158,12 +178,14 @@ const AboutPage = () => {
 							key={index}
 							className="project-card"
 						>
-							<img
-								src={project.imageUrl}
-								alt={project.title}
-								className="project-image"
-							/>
-							<h3>{project.title}</h3>
+							<a href={project.url} target="_blank" rel="noopener noreferrer">
+								<img
+									src={project.imageUrl}
+									alt={project.title}
+									className="project-image"
+								/>
+								<h3>{project.title}</h3>
+							</a>
 						</div>
 					))}
 				</Carousel>
