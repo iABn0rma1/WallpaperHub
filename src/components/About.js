@@ -11,7 +11,7 @@ const AboutPage = () => {
 			title: "Aesthetic Intelligence",
 			imageUrl:
 				"https://cdn-cjhgk.nitrocdn.com/CXxGixRVyChwAxySbAyltuCiQXRKaWDN/assets/images/optimized/rev-e29aa1c/www.newbeauty.com/wp-content/uploads/2024/04/ai-good-bad-ugly-2-1024x614.jpg",
-			url: "https://aestheticintelligence.onrender.com".
+			url: "https://aestheticintelligence.onrender.com",
 		},
 		{
 			title: "inkSpire",
